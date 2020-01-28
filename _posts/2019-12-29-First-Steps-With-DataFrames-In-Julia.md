@@ -1,5 +1,3 @@
-# First Steps with DataFrames in Julia
-
 Back in the Summer of 2012 when my knowledge of programming was limited to
 a couple of classes of C/C++ and R for maths undergraduates, I came across a
 post on [R Bloggers](https://www.r-bloggers.com) about this interesting new
