@@ -3,7 +3,7 @@
 Given a continuous function in one variable and lower and upper bounds,
 we can calculate the area under the curve with Monte Carlo Simulation.
 
-## Details
+## Details 
 
 Start with the defintion of the (arithmetic) mean of a function over a given interval:
 
@@ -67,9 +67,18 @@ or
 I coded up a really simple, non-interactive version of this
 in Scala using Breeze, Scala's main numerical methods library.
 
+The function `mc_integrate` takes a function, number of Monte Carlo samples to generate,
+and lower and upper bounds as arguments.
+
+It evaluates the function at each randomly generated point point,
+and then returns the approximation of the area under the curve.
+That is, the approximation of the integral of the function
+from the lower bound to the upper bound.
+
 ```
 import breeze.linalg._
 import breeze.stats.distributions.Uniform
+
 
 def mc_integrate(fn: Double => Double, nsamp: Int, lower: Double, upper: Double): Double = {
 
@@ -87,5 +96,43 @@ def mc_integrate(fn: Double => Double, nsamp: Int, lower: Double, upper: Double)
 
 }
 ```
+
+Let's define the function we want to integrate to be the Standard Normal curve:
+
+![\frac{1}{\sqrt(2\pi)}e^{\frac{-x*x}{2}}](https://render.githubusercontent.com/render/math?math=%5Cfrac%7B1%7D%7B%5Csqrt(2%5Cpi)%7De%5E%7B%5Cfrac%7B-x*x%7D%7B2%7D%7D)
+
+```
+import scala.math._
+
+// The function we want to integrate
+def f(x: Double): Double = {
+    math.exp(-x * x / 2) / math.sqrt(2 * Pi)
+}
+```
+
+This is a probability distribution, symmetric about `0`, so it integrates to `1`.
+Integrating this function between 0.0 and 5.0 should be approximately `0.5`.
+
+We calculate the Monte Carlo integration estimate of the
+area under this curve with 1000 Uniformly-distributed random variables.
+
+```
+val lb = 0.0
+val ub = 5.0
+
+val area = mc_integrate(fn=f, nsamp=1000, lower=lb, upper=ub)
+
+println(area)
+```
+The output is
+```
+0.5298748535084071
+```
+which is not far off the true value of `0.5`.
+
+Given the relative
+simplicity of the algorithm, this is a decent result.
+It's also good jumping off point for getting to grips
+with more sophisiticated numerical integration methods.
 
 The full code for this Scala project is [here](https://github.com/LeoKavanagh/mc-scala).
