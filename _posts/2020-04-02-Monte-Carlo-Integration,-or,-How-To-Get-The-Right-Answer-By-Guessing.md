@@ -11,7 +11,7 @@ Start with the defintion of the (arithmetic) mean of a function over a given int
 
 Now define the same thing in the continuous case rather than the discrete:
 
-![\bar{f(x)}=\frac{1}{b - a}\int\limits_{a}^b{f(x)}dx](https://render.githubusercontent.com/render/math?math=%5Cbar%7Bf(x)%7D%3D%5Cfrac%7B1%7D%7Bb%20-%20a%7D%5Cint%5Climits_%7Ba%7D%5Eb%7Bf(x)%7Ddx)
+![\bar{f(x)}=\frac{1}{b - a}\int_{a}^b{f(x)}dx](https://render.githubusercontent.com/render/math?math=%5Cbar%7Bf(x)%7D%3D%5Cfrac%7B1%7D%7Bb%20-%20a%7D%5Cint_%7Ba%7D%5Eb%7Bf(x)%7Ddx)
 
 Now, we can rearrange this expression to get a definition of the integral in terms of the mean and the width of the interval:
 
